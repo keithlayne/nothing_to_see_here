@@ -8,15 +8,15 @@ The conversation went something like this:
 
 > *buddy*:  They had me write FizzBuzz.
 
-> Me:  No, really.  What did they ask you?
+> *Me*:  No, really.  What did they ask you?
 
-> buddy:  ...
+> *buddy*:  ...
 
-> Me:  Wow.  Did you punch them in the face before walking out?
+> *Me*:  Wow.  Did you punch them in the face before walking out?
 
-> buddy:  ...
+> *buddy*:  ...
 
-> Me:  I don't even know you anymore.
+> *Me*:  I don't even know you anymore.
 
 
 ### for reals
@@ -29,7 +29,7 @@ programmer that way.
 ### it gets better....
 
 Being the snarky douche that I am, I immediately sent him a dirty one-liner version of FizzBuzz
-via HipChat (I'm so hipster), along with some totally sweet emotions as punctutation.
+via HipChat (I'm so hipster), along with some totally sweet emoticons as punctutation.
 
 He replied with his final version from the interview.  It sucked.  I mocked him.
 
