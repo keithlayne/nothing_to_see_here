@@ -12,6 +12,8 @@ Right is well, right.  I just don't know how to do that exactly.
 There's also a lot of moistness in the first version.  I'll get right on that.
 
 \begin{code}
+import Control.Monad (mapM_)
+
 data Rule a b = Rule {
     test :: (a -> Bool),
     result :: b
@@ -50,5 +52,43 @@ tryRule rule input | test rule $ input = Left $ result rule
                    | otherwise = Right input
 \end{code}
 
+I suppose we could use a nice way to specify a default.  It should just be a
+rule that will always match:
+
+\begin{code}
+catch_all = Rule (\_ -> True)
+\end{code}
+
 Got a (sort-of) monadic thing going on now.  We want to end up with something
 that we can compose For Great Good™, so it prolly needs some more love.
+
+What I want to end up with is some chained type of thing like on the first try.
+
+Remembering:
+(>>=) :: Monad m => m a -> (a -> m b) -> m b
+
+m = Either b
+
+(>>=) :: Either b a -> (a -> Either b a) -> Either b a
+
+So...'tryRule rule' returns the monadic function.  This leads to the following
+result, which is not really satisfying.
+
+\begin{code}
+runFizzBuzz n = return n >>= tryRule fizzbuzz >>= tryRule buzz >>= tryRule fizz
+\end{code}
+
+This is a problem though, because it needs the value.  This is a shortcoming
+of the whole Rule thing.  I think it needs some more work.  Later, that is.
+
+For now, just cheat and use the right value, cause that's what fizzbuzz does.
+
+\begin{code}
+-- this is terribad
+showResult :: (Show a, Show b) => Either a b -> String
+showResult (Left l) = show l
+showResult (Right r) = show r
+
+main = mapM_ (putStrLn . showResult . runFizzBuzz) [1..30]
+\end{code}
+
