@@ -2,6 +2,7 @@
 -- Don't judge me.  You don't know my life.
 
 import Control.Monad (mapM_)
+import Control.Applicative ((<$>))
 
 data Rule a b = Rule {
     test :: (a -> Bool),
@@ -22,5 +23,4 @@ tryRule rule input | test rule $ input = Left $ result rule $ input
 
 runFizzBuzz n = return n >>= tryRule fizzbuzz >>= tryRule buzz >>= tryRule fizz >>= tryRule number
 
-main = mapM_ run [1..30]
-  where run = either putStrLn undefined . runFizzBuzz
+main = mapM_ (either putStrLn undefined) $ runFizzBuzz <$> [1..30]
