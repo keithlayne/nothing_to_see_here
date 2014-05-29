@@ -22,5 +22,5 @@ tryRule rule input | test rule $ input = Left $ result rule $ input
 
 runFizzBuzz n = return n >>= tryRule fizzbuzz >>= tryRule buzz >>= tryRule fizz >>= tryRule number
 
-main = mapM_ (putStrLn . run) [1..30]
-  where run = either show undefined . runFizzBuzz
+main = mapM_ run [1..30]
+  where run = either putStrLn undefined . runFizzBuzz
